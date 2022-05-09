@@ -21,7 +21,7 @@ Build an NLP model to analyze Twitter sentiment about Apple and Google products
 - Will Norton: 
 [LinkedIn]() |
 [GitHub]() |
-[Email]()
+[Email](noptov52@yahoo.com)
 
 Our model and analysis can be found at our github repo: [Sentiment Analysis of Tweets](https://github.com/ssaeed85/dsc-ph4-TweetSentimentAnalysis-NLP)
 
