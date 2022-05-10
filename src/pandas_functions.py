@@ -1,7 +1,5 @@
 import pandas as pd
 import numpy as np
-from nltk.probability import FreqDist
-from documentParser import doc_preparer
 
 def dataFrame_info(df):
     '''
@@ -72,15 +70,4 @@ def dataFrame_info(df):
     display(df_pd)
     
     
-def getTopWordFreq(df,col,n):
-    '''
-    generates FreqDist and prints out top n words
-    df: dataframe
-    col: column you want to run a freqDist on
-    n: number of most common items    
-    '''
-    word_freq = FreqDist()
-    for text in df[col].map(lambda x:doc_preparer(x,stem=False)):
-        for word in text.split():
-            word_freq[word] +=1
-    return word_freq.most_common(n=n)
+
