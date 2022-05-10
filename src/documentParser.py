@@ -1,11 +1,13 @@
 from nltk.stem import PorterStemmer
-from nltk.corpus import stopwords
 from nltk.tokenize import RegexpTokenizer
+from nltk.probability import FreqDist
+from nltk.corpus import stopwords
 sw = stopwords.words('english')
 
 def doc_preparer(doc, stem = False, stop_words=sw):
     '''
-    :param doc: a document from the satire corpus 
+    doc: a text document from the corpus 
+    stop_words: stopwords. defaults to nltk's stopwords
     :return: a document string with words which have been 
             lemmatized, 
             parsed for stopwords, 
@@ -28,7 +30,7 @@ def doc_preparer(doc, stem = False, stop_words=sw):
     doc = [word.lower() for word in doc]
     
     # Remove stop words
-    doc = [word for word in doc if word not in sw]
+    doc = [word for word in doc if word not in stop_words]
    
     # Stemming
     if stem:
@@ -36,3 +38,17 @@ def doc_preparer(doc, stem = False, stop_words=sw):
         doc = [p_stemmer.stem(word) for word in doc]
         
     return ' '.join(doc)
+
+def getTopWordFreq(df,col,n,stop_words):
+    '''
+    generates FreqDist and prints out top n words
+    df: dataframe
+    col: column you want to run a freqDist on
+    n: number of most common items 
+    stop_words: stopwords. defaults to nltk's stopwords
+    '''
+    word_freq = FreqDist()
+    for text in df[col].map(lambda x:doc_preparer(x,stem=False,stop_words=stop_words)):
+        for word in text.split():
+            word_freq[word] +=1
+    return word_freq.most_common(n=n)
