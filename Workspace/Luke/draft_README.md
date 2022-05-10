@@ -4,7 +4,7 @@
 
 - Luke Dowker: [LinkedIn](https://www.linkedin.com/in/luke-dowker/) | [GitHub](https://github.com/toastdeini) | [Email](mailto:lhdowker@gmail.com)
 - Will Norton: [LinkedIn]() | [GitHub](https://github.com/Noptov) | [Email](mailto:noptov52@yahoo.com)
-- Saad Saeed: [LinkedIn]() | [GitHub](https://github.com/ssaeed85) | [Email](mailto:saadsaeed85@gmail.com)
+- Saad Saeed: [LinkedIn](https://www.linkedin.com/in/saadsaeed85/) | [GitHub](https://github.com/ssaeed85) | [Email](mailto:saadsaeed85@gmail.com)
 - Marshall Wylder: [LinkedIn]() | [GitHub]() | [Email](mailto:marshall.wylder@gmail.com)
 
 # Overview
