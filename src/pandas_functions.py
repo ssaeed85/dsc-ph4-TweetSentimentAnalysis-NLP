@@ -1,5 +1,7 @@
 import pandas as pd
 import numpy as np
+from nltk.probability import FreqDist
+from documentParser import doc_preparer
 
 def dataFrame_info(df):
     '''
@@ -70,39 +72,15 @@ def dataFrame_info(df):
     display(df_pd)
     
     
-def prettyPrintGridCVResults(GSCVModel):
+def getTopWordFreq(df,col,n):
     '''
-    Tabulates results a grid search.
-    Ranks by accuracy
-    Shows all 4 mean test metrics: Accuracy, Precision Macro, Recall Macro, F1-score Macro
-    Shows all parameters used for that model
+    generates FreqDist and prints out top n words
+    df: dataframe
+    col: column you want to run a freqDist on
+    n: number of most common items    
     '''
-    
-    list_cols = ['rank_test_accuracy']
-    list_metrics = ['mean_test_accuracy', 'mean_test_precision_macro',
-                      'mean_test_recall_macro', 'mean_test_f1_macro']
-    list_cols.extend(list_metrics)
-
-    for col in GSCVModel.cv_results_.keys():
-        if col.startswith('param_'):
-            list_cols.append(col)
-    
-    
-
-
-    table = pd.DataFrame(GSCVModel.cv_results_)
-    for m in list_metrics:
-        table[m] = table[m].map('{:,.4f}'.format)
-    table = table[list_cols].sort_values(by='rank_test_accuracy')
-    
-
-        
-    table.rename(columns={'rank_test_accuracy': 'Rank (By Accuracy)',
-                          'mean_test_accuracy': 'Mean Test Accuracy',
-                          'mean_test_precision_macro': 'Mean Test Precision (macro)',
-                          'mean_test_recall_macro': 'Mean Test Recall (macro)',
-                          'mean_test_f1_macro': 'Mean Test F1-Score (macro)'
-                          }, inplace=True)
-    
-
-    return table.set_index('Rank (By Accuracy)')
+    word_freq = FreqDist()
+    for text in df[col].map(lambda x:doc_preparer(x,stem=False)):
+        for word in text.split():
+            word_freq[word] +=1
+    return word_freq.most_common(n=n)
