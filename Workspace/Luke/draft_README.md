@@ -2,33 +2,37 @@
 
 # Authors
 
-- Luke Dowker: [LinkedIn]() | [GitHub]() | [Email](mailto:lhdowker@gmail.com)
-- Will Norton: [LinkedIn]() | [GitHub]() | [Email](mailto:)
-- Saad Saeed: [LinkedIn]() | [GitHub]() | [Email](mailto:)
-- Marshall Wylder: [LinkedIn]() | [GitHub]() | [Email](mailto:)
+- Luke Dowker: [LinkedIn](https://www.linkedin.com/in/luke-dowker/) | [GitHub](https://github.com/toastdeini) | [Email](mailto:lhdowker@gmail.com)
+- Will Norton: [LinkedIn]() | [GitHub](https://github.com/Noptov) | [Email](mailto:noptov52@yahoo.com)
+- Saad Saeed: [LinkedIn]() | [GitHub](https://github.com/ssaeed85) | [Email](mailto:saadsaeed85@gmail.com)
+- Marshall Wylder: [LinkedIn]() | [GitHub]() | [Email](mailto:marshall.wylder@gmail.com)
 
 # Overview
 
+
+
 ## Business Problem
+
+
 
 # Data
 
-Source
-Additional data/purpose
-Data itself - what it represents, its constituents, etc
+- Source
+- Additional data/purpose
+- Data itself - what it represents, its constituents, etc
 
 # Methodology
 
-Libraries used, esp. primary ones
-Approach?
-Which features and why?
-Overall journey
+- Libraries used, esp. primary ones
+- Approach?
+- Which features and why?
+- Overall journey
 
 # Modeling
 
-Techniques
-Details 
-Scores/results
+- Techniques
+- Details 
+- Scores/results
 
 # Conclusions
 
