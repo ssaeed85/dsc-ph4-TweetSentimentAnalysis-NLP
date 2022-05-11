@@ -1,6 +1,6 @@
 # Tweet Sentiment Analysis Using NLP
 
-<!--- Wordcloud header image --->
+[!img](../../images/SplashHeader.png)
 
 # Authors
 
@@ -50,14 +50,18 @@ The majority of the tweets in the dataset were neutral in sentiment - that is, t
 
 # Methodology
 
-Our initial inquiry into the data quickly revealed that the `tweet_text` (renamed `text`) column would likely be our primary feature for modeling. The text data was subject to the usual preprocessing steps for NLP operations - we used a Python function
+Our initial inquiry into the data quickly revealed that the `tweet_text` (renamed `text`) column would likely be our primary feature for modeling. The text data was subject to the usual preprocessing steps for NLP operations - we used a [Python function](../../src/documentParser.py) that...
 
-- We created a Python function that searches a document for regular expressionsin this case, words immediately following instances of an `@` symbol were excluded, as these "mentions" have minimal semantic value and muddy the data
+- Searches a document for regular expressions and creates tokens, using NLTK's `RegexpTokenizer`. In this case, combinations of alphanumeric characters that immediately follow instances of an `@` symbol were excluded, as these "[mentions](https://en.wikipedia.org/wiki/Mention_(blogging)#@_(At_sign))" have minimal semantic value and muddy the data. Punctuation and other stray characters are removed during tokenization.
+- Standardizes the tokens by converting all (alphabetical) characters to *lowercase*.
+- Discards the most common English words, which have negligible semantic value, from the list of tokens, using NLTK's `corpus.stopwords` module.
+- (if `stem = True`) Reduces instances of related words/tokens to common roots, using NLTK's `PorterStemmer`.
 
-To prepare the data (text) for modeling, we used two vectorization techniques - a simple bag-of-words approach with sklearn's `CountVectorizer` and a term-importance approach using the same library's `TfidfVectorizer`.
-
-- Which features and why?
-- Overall journey
+To prepare the data (i.e. strings of text) for modeling, we used two vectorization techniques - a simple bag-of-words approach with sklearn's `CountVectorizer` and a term-importance (TF-IDF scoring) approach using the same library's `TfidfVectorizer`. With each vectorization method, we tested for accuracy and $F_1$ score used four unique classification algorithms:
+- `RandomForestClassifier`
+- `MultinomialNB` (Multinomial Naive Bayes)
+- `GradientBoostingClassifier`
+- `XGBRFClassifier` (XGBoosted Random Forest)
 
 <!--- Bar graph of most common words after appending new stopwords --->
 
@@ -123,7 +127,7 @@ Refine **upsampling techiques** to better predict on imbalanced classes, i.e. po
 │     ├── image_name.jpg
 │     ├── image_name.jpg
 │     ├── image_name.jpg
-│     ├── image_name.jpg
+│     └── SplashHeader.png
 ├── README.md
 ├── Presentation_Slides.pdf
 └── TweetSentimentAnalysis_nb.ipynb
@@ -131,5 +135,5 @@ Refine **upsampling techiques** to better predict on imbalanced classes, i.e. po
 
 ## Other Links
 
-- Full analysis for this project available in the [Jupyter notebook](TweetSentimentAnalysis_nb.ipynb) and group members' [workspaces](https://github.com/ssaeed85/dsc-ph4-TweetSentimentAnalysis-NLP/tree/main/Workspace).
+- Full analysis for this project available in the [Jupyter notebook](TweetSentimentAnalysis_nb.ipynb) and group members' [workspaces](../../Workspace).
 - Presentation slides available in [.pdf format]().
