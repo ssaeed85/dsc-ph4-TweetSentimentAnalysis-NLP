@@ -20,7 +20,7 @@ def doc_preparer(doc, stem = False, stop_words=sw):
 
     
     # Instantiate regex tokenizer
-    regex_pattern = r"(?<![@A-Za-z0-9_])([a-zA-Z]+(?:'[a-z]+)?)" 
+    regex_pattern = r"(?<![@A-Za-z0-9_])([a-zA-Z]+(?:’[a-z]+)?)"
     regex_token = RegexpTokenizer(regex_pattern)
     
     # Tokenize using regex pattern
