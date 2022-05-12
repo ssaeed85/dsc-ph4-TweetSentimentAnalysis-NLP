@@ -1,6 +1,6 @@
 # Tweet Sentiment Analysis Using NLP
 
-[!img](../../images/SplashHeader.png)
+![img](../../images/SplashHeader.png)
 
 # Authors
 
@@ -46,7 +46,7 @@ The dataset consists of just under 9,100 rows and three columns, all of which co
 
 The majority of the tweets in the dataset were neutral in sentiment - that is, they did not express a positive or negative emotion *toward a brand or product*. Tweets marked as containing either a **positive** or **negative** sentiment made up a smaller proportion of the corpus, and negatively charged tweets made up just 6% of the data, a significant imbalance. Records where the human reviewer could not parse an emotion from the text of a tweet were dropped to reduce 'noise' in the data.
 
-<!--- Graph of target distribution image ---> 
+![img](../../images/Sentiment_Distribution.jpg)
 
 # Methodology
 
@@ -57,13 +57,16 @@ Our initial inquiry into the data quickly revealed that the `tweet_text` (rename
 - Discards the most common English words, which have negligible semantic value, from the list of tokens, using NLTK's `corpus.stopwords` module.
 - (if `stem = True`) Reduces instances of related words/tokens to common roots, using NLTK's `PorterStemmer`.
 
-To prepare the data (i.e. strings of text) for modeling, we used two vectorization techniques - a simple bag-of-words approach with sklearn's `CountVectorizer` and a term-importance (TF-IDF scoring) approach using the same library's `TfidfVectorizer`. With each vectorization method, we tested for accuracy and $F_1$ score used four unique classification algorithms:
+![img](../../images/WordFreq_preSW.jpg)
+
+![img](../../images/WordFreq_postSW.jpg)
+
+To prepare the data (i.e. strings of text) for modeling, we used two vectorization techniques - a simple bag-of-words approach with sklearn's `CountVectorizer` and a term-importance (TF-IDF scoring) approach using the same library's `TfidfVectorizer`. With each vectorization method, we tested for accuracy and F1 score used four unique classification algorithms:
 - `RandomForestClassifier`
 - `MultinomialNB` (Multinomial Naive Bayes)
 - `GradientBoostingClassifier`
 - `XGBRFClassifier` (XGBoosted Random Forest)
 
-<!--- Bar graph of most common words after appending new stopwords --->
 
 # Modeling
 
