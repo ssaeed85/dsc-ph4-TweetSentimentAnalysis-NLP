@@ -1,6 +1,6 @@
 # Tweet Sentiment Analysis Using NLP
 
-![img](../../images/SplashHeader.png)
+![img](images/SplashHeader.png)
 
 ## Authors
 
@@ -23,9 +23,9 @@
 
 # Overview & Business Problem
 
-Tweets — brief, character-limited posts that are shared on [Twitter](https://help.twitter.com/en/using-twitter/types-of-tweets) by users) — were scraped and analyzed by human contributors to determine if the text of the tweet contained a positive, negative, or neutral/non-existent sentiment toward a named tech brand or product, e.g. iPhone or Android. Using the ground truths provided by these labels, we employ natural language processing (NLP) techniques to predict whether a string of text (like a tweet) contains a sentiment toward a product. 
+[Tweets](https://help.twitter.com/en/using-twitter/types-of-tweets) — brief, character-limited posts that are shared on Twitter by users — were scraped and analyzed by human contributors to determine if the text of the tweet contained a positive, negative, or neutral/non-existent sentiment toward a named tech brand or product, e.g. iPhone or Android. Using the ground truths provided by these labels, we employ natural language processing (NLP) techniques to predict whether a string of text (like a tweet) contains a sentiment toward a product. 
 
-Using the Natural Language Toolkit (NLTK) package for Python, along with machine learning tools from scikit-learn, we built several classification models that were able to predict with varying degrees of accuracy whether a tweet contained any emotion toward a product whatsoever, and whether that emotion was positive or negative. Festival organizers and administrators can use this framework to gauge attendee sentiment and address audience needs in a swift and appropriate fashion. Future iterations of our analysis would incorporate more refined upsampling techniques to address class imbalance, training the model on tweets written in languages other than English, and models that identify more *specific* sentiments like emergency.
+Using the Natural Language Toolkit (NLTK) package for Python, along with machine learning tools from scikit-learn, we built several classification models that were able to predict with varying degrees of accuracy whether a tweet contained any emotion toward a product whatsoever, and whether that emotion was positive or negative. **Festival organizers and administrators** can use this framework to gauge attendee sentiment and address audience needs in a swift and appropriate fashion. Future iterations of our analysis would incorporate more refined upsampling techniques to address class imbalance, training the model on tweets written in languages other than English, and models that identify more *specific* sentiments like emergency.
 
 # Data
 
@@ -42,11 +42,11 @@ The dataset consists of just under 9,100 rows and three columns, all of which co
 
 The majority of the tweets in the dataset were neutral in sentiment - that is, they did not express a positive or negative emotion *toward a brand or product*. Tweets marked as containing either a **positive** or **negative** sentiment made up a smaller proportion of the corpus, and negatively charged tweets made up just 6% of the data, a significant imbalance. Records where the human reviewer could not parse an emotion from the text of a tweet were dropped to reduce 'noise' in the data.
 
-![img](../../images/Sentiment_Distribution.jpg)
+![img](images/Sentiment_Distribution.jpg)
 
 # Methodology
 
-Our initial inquiry into the data quickly revealed that the `tweet_text` (renamed `text`) column would likely be our primary feature for modeling. The text data was subject to the usual preprocessing steps for NLP operations - we used a [Python function](../../src/documentParser.py) that...
+Our initial inquiry into the data quickly revealed that the `tweet_text` (renamed `text`) column would likely be our primary feature for modeling. The text data was subject to the usual preprocessing steps for NLP operations - we used a [Python function](src/documentParser.py) that...
 
 - Searches a document for regular expressions and creates tokens, using NLTK's `RegexpTokenizer`. In this case, combinations of alphanumeric characters that immediately follow instances of an `@` symbol were excluded, as these "[mentions](https://en.wikipedia.org/wiki/Mention_(blogging)#@_(At_sign))" have minimal semantic value and muddy the data. Punctuation and other stray characters are removed during tokenization.
 - Standardizes the tokens by converting all (alphabetical) characters to *lowercase*.
@@ -54,9 +54,9 @@ Our initial inquiry into the data quickly revealed that the `tweet_text` (rename
     - **Note:** the stopwords list was also programatically updated to exclude location- and platform-specific strings like "SXSW" or "RT".
 - Reduces instances of related words/tokens to common roots, using NLTK's `PorterStemmer`.
 
-![img](../../images/WordFreq_preSW.jpg)
+![img](images/WordFreq_preSW.jpg)
 
-![img](../../images/WordFreq_postSW.jpg)
+![img](images/WordFreq_postSW.jpg)
 
 To prepare the data (i.e. strings of text) for modeling, we used two vectorization techniques - a simple bag-of-words approach with sklearn's `CountVectorizer` and a term-importance (TF-IDF scoring) approach using the same library's `TfidfVectorizer`. With each vectorization method, we tested for accuracy and F1 score used four unique classification algorithms:
 - `RandomForestClassifier`
@@ -66,6 +66,8 @@ To prepare the data (i.e. strings of text) for modeling, we used two vectorizati
 
 
 # Modeling Results
+
+Detailed information about the modeling process is available in the [main Jupyter notebook](TweetSentimentAnalysis_nb.ipynb) for this project.
 
 - **Best model:**
     - `CountVectorizer` with `RandomForest` proved most effective
@@ -95,23 +97,9 @@ This model can be immediately useful by filtering tweets without emotion; the re
 ```
 ├── Workspace  
 │     ├── Luke
-│     │   ├── draft_README.md
-│     │   └── Initial_Cleaning.ipynb
 │     ├── Marshall
-│     │   ├── README.txt
-│     │   └── MW_Notebook.ipynb
 │     ├── Saad
-│     │   ├── README.txt
-│     │   ├── DataCleaning.ipynb
-│     │   └── WordCloud.ipynb
 │     └── Will
-│         ├── README.txt
-│         ├── neg_de_train.csv
-│         ├── negtrain2.csv
-│         ├── neg_translated.csv
-│         ├── twice_translated_negtrain.csv
-│         ├── translation oversample.ipynb
-│         └── modeltranslate2.ipynb
 │
 ├── data
 │     └── judge_1377884607_tweet_product_company.csv
@@ -126,5 +114,7 @@ This model can be immediately useful by filtering tweets without emotion; the re
 
 ## Other Links
 
-- Full analysis for this project available in the [Jupyter notebook](TweetSentimentAnalysis_nb.ipynb) and group members' [workspaces](../../Workspace).
-- Presentation slides available in [.pdf format](../../Presentation_Slides.pdf).
+- Full analysis for this project available in the [Jupyter notebook](TweetSentimentAnalysis_nb.ipynb) and group members' [workspaces](./Workspace).
+- Presentation slides available in [.pdf format](Presentation_Slides.pdf).
+- [WordCloud]()
+- [GitHub repo]()
