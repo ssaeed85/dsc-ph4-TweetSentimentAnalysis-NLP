@@ -2,7 +2,7 @@
 
 ![img](../../images/SplashHeader.png)
 
-# Authors
+## Authors
 
 - Luke Dowker: 
 [LinkedIn](https://www.linkedin.com/in/luke-dowker/) |
@@ -21,21 +21,17 @@
 [GitHub](https://github.com/MarshallWylder) |
 [Email](mailto:marshall.wylder@gmail.com)
 
-# Overview
+# Overview & Business Problem
 
 Tweets — brief, character-limited posts that are shared on [Twitter](https://help.twitter.com/en/using-twitter/types-of-tweets) by users) — were scraped and analyzed by human contributors to determine if the text of the tweet contained a positive, negative, or neutral/non-existent sentiment toward a named tech brand or product, e.g. iPhone or Android. Using the ground truths provided by these labels, we employ natural language processing (NLP) techniques to predict whether a string of text (like a tweet) contains a sentiment toward a product. 
 
 Using the Natural Language Toolkit (NLTK) package for Python, along with machine learning tools from scikit-learn, we built several classification models that were able to predict with varying degrees of accuracy whether a tweet contained any emotion toward a product whatsoever, and whether that emotion was positive or negative. Festival organizers and administrators can use this framework to gauge attendee sentiment and address audience needs in a swift and appropriate fashion. Future iterations of our analysis would incorporate more refined upsampling techniques to address class imbalance, training the model on tweets written in languages other than English, and models that identify more *specific* sentiments like emergency.
 
-## Business Problem
-
-
-
 # Data
 
 The data used in this project is [hosted on data.world](https://data.world/crowdflower/brands-and-product-emotions) and was sourced by the machine learning/AI company CrowdFlower, which has since been acquired by [Appen](https://appen.com/datasets-resource-center/). Per the dataset summary:
 
-> "Contributors evaluated tweets about multiple brands and products. The crowd was asked if the tweet expressed positive, negative, or no emotion towards a brand and/or product. If some emotion was expressed they were also asked to say which brand or product was the target of that emotion."
+> *Contributors evaluated tweets about multiple brands and products. The crowd was asked if the tweet expressed positive, negative, or no emotion towards a brand and/or product. If some emotion was expressed they were also asked to say which brand or product was the target of that emotion.*
 
 The dataset consists of just under 9,100 rows and three columns, all of which contained string data:
 - `tweet_text` - the full text of a tweet. The primary feature used in this analysis.
@@ -72,29 +68,30 @@ To prepare the data (i.e. strings of text) for modeling, we used two vectorizati
 # Modeling Results
 
 - **Best model:**
-    - `CountVectorizer` with `RandomForest` proved best
+    - `CountVectorizer` with `RandomForest` proved most effective
     - Parameters:
-        - criterion = gini (impurity)
-        - max_depth = 150
-        - n_estimators = 100
-- Scores/results
+        - `criterion` = `gini` (impurity)
+        - `max_depth` = 150
+        - `n_estimators` = 100
+- **Scores/results:**
     - Accuracy on all test data: **69%**
     - Accuracy in filtering, i.e. predicting tweets **without** sentiment: **89%**
 
+This model can be immediately useful by filtering tweets without emotion; the remaining tweets can be tagged for use in an improved sentiment analysis model or sent to a human-in-the-loop to enhance our model in real time.
 
-# Conclusions
+# Recommendations
 
-- **Use the model as a filtration system:** Tweets *without* a distinct sentiment were the 
-- **Circulate and reward positive sentiment:**
-- 
+- Use the model as a **filtration system**
+- **Circulate and reward** positive sentiment
+- Address negative sentiment to **boost audience experience**
 
 ## Next Steps
 
 - Incorporate **upsampling techiques** like backtranslation and synonymization to better predict on imbalanced classes, i.e. positive or negative emotion.
-- Expand the scope of the model such that it can analyze **text from other languages**
-- 
+- Expand the scope of the model such that it can analyze **text from other languages**.
+- Use sentiment analysis to improve **emergency response time**.
 
-# Repository Structure
+## Repository Structure
 ```
 ├── Workspace  
 │     ├── Luke
@@ -117,20 +114,17 @@ To prepare the data (i.e. strings of text) for modeling, we used two vectorizati
 │         └── modeltranslate2.ipynb
 │
 ├── data
-│     ├── datapackage.json
 │     └── judge_1377884607_tweet_product_company.csv
 ├── images
-│     ├── image_name.jpg
-│     ├── image_name.jpg
-│     ├── image_name.jpg
-│     ├── image_name.jpg
-│     └── SplashHeader.png
+├── model
+├── src
 ├── README.md
 ├── Presentation_Slides.pdf
+├── tweet_sentiment_app.py
 └── TweetSentimentAnalysis_nb.ipynb
 ```
 
 ## Other Links
 
 - Full analysis for this project available in the [Jupyter notebook](TweetSentimentAnalysis_nb.ipynb) and group members' [workspaces](../../Workspace).
-- Presentation slides available in [.pdf format]().
+- Presentation slides available in [.pdf format](../../Presentation_Slides.pdf).
