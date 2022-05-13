@@ -111,9 +111,9 @@ This model can be immediately useful by filtering tweets without emotion; the re
 └── TweetSentimentAnalysis_nb.ipynb
 ```
 
-## Other Links
+## Other Links and References
 
 - Full analysis for this project available in the [Jupyter notebook](./TweetSentimentAnalysis_nb.ipynb) and group members' [workspaces](./Workspace).
 - Presentation slides available in [.pdf format](./Presentation_Slides.pdf).
-- Wordcloud - [WordCloud]()
-- Streamlit - [GitHub repo]()
+- Wordcloud - [WordCloud](https://minimaxir.com/2016/05/wordclouds/)
+- Streamlit - [GitHub repo](https://github.com/xiaohua-su/Recommender_System)
