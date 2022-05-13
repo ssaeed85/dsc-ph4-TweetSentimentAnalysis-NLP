@@ -25,7 +25,7 @@
 
 Tweets — brief, character-limited posts that are shared on [Twitter](https://help.twitter.com/en/using-twitter/types-of-tweets) by users) — were scraped and analyzed by human contributors to determine if the text of the tweet contained a positive, negative, or neutral/non-existent sentiment toward a named tech brand or product, e.g. iPhone or Android. Using the ground truths provided by these labels, we employ natural language processing (NLP) techniques to predict whether a string of text (like a tweet) contains a sentiment toward a product. 
 
-Using the Natural Language Toolkit (NLTK) package for Python, along with machine learning tools from scikit-learn, we built several classification models that were able to predict with varying degrees of accuracy whether a tweet contained any emotion toward a product whatsoever, and whether that emotion was positive or negative. Future iterations of our analysis would incorporate more refined upsampling techniques to address class imbalance, and ______ ______.
+Using the Natural Language Toolkit (NLTK) package for Python, along with machine learning tools from scikit-learn, we built several classification models that were able to predict with varying degrees of accuracy whether a tweet contained any emotion toward a product whatsoever, and whether that emotion was positive or negative. Festival organizers and administrators can use this framework to gauge attendee sentiment and address audience needs in a swift and appropriate fashion. Future iterations of our analysis would incorporate more refined upsampling techniques to address class imbalance, training the model on tweets written in languages other than English, and models that identify more *specific* sentiments like emergency.
 
 ## Business Problem
 
@@ -55,7 +55,8 @@ Our initial inquiry into the data quickly revealed that the `tweet_text` (rename
 - Searches a document for regular expressions and creates tokens, using NLTK's `RegexpTokenizer`. In this case, combinations of alphanumeric characters that immediately follow instances of an `@` symbol were excluded, as these "[mentions](https://en.wikipedia.org/wiki/Mention_(blogging)#@_(At_sign))" have minimal semantic value and muddy the data. Punctuation and other stray characters are removed during tokenization.
 - Standardizes the tokens by converting all (alphabetical) characters to *lowercase*.
 - Discards the most common English words, which have negligible semantic value, from the list of tokens, using NLTK's `corpus.stopwords` module.
-- (if `stem = True`) Reduces instances of related words/tokens to common roots, using NLTK's `PorterStemmer`.
+    - **Note:** the stopwords list was also programatically updated to exclude location- and platform-specific strings like "SXSW" or "RT".
+- Reduces instances of related words/tokens to common roots, using NLTK's `PorterStemmer`.
 
 ![img](../../images/WordFreq_preSW.jpg)
 
@@ -68,37 +69,30 @@ To prepare the data (i.e. strings of text) for modeling, we used two vectorizati
 - `XGBRFClassifier` (XGBoosted Random Forest)
 
 
-# Modeling
+# Modeling Results
 
-- Techniques
-    - `RandomForestClassifier`
-    - `MultinomialNB`
-    - `GradientBoostingClassifier`
-    - `XGBRFClassifier`
-- Details 
+- **Best model:**
     - `CountVectorizer` with `RandomForest` proved best
+    - Parameters:
         - criterion = gini (impurity)
         - max_depth = 150
         - n_estimators = 100
 - Scores/results
-    - Accuracy on test data: 69%
-    - F1 score on test data: 0.67
+    - Accuracy on all test data: **69%**
+    - Accuracy in filtering, i.e. predicting tweets **without** sentiment: **89%**
 
-<!--- Normalized confusion matrix image --->
 
 # Conclusions
 
-- Recommendation 1
-- Recommendation 2
-- Recommendation 3
+- **Use the model as a filtration system:** Tweets *without* a distinct sentiment were the 
+- **Circulate and reward positive sentiment:**
+- 
 
 ## Next Steps
 
-Refine **upsampling techiques** to better predict on imbalanced classes, i.e. positive or negative emotion.
-
-- Backtranslation on minority sample
-- Synonymizing minority sample
-- SMOTE upsampling on minority sample
+- Incorporate **upsampling techiques** like backtranslation and synonymization to better predict on imbalanced classes, i.e. positive or negative emotion.
+- Expand the scope of the model such that it can analyze **text from other languages**
+- 
 
 # Repository Structure
 ```
