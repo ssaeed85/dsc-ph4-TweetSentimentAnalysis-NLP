@@ -106,7 +106,7 @@ This model can be immediately useful by filtering tweets without emotion; the re
 ├── model
 ├── src
 ├── README.md
-├── Presentation_Slides.pdf
+├── presentation.pdf
 ├── tweet_sentiment_app.py
 └── TweetSentimentAnalysis_nb.ipynb
 ```
